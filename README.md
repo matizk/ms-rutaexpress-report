@@ -1,17 +1,54 @@
 # ms-rutaexpress-report
 
-Microservicio de reportería de RutaExpress.
+Microservicio Spring Boot de reportería operacional para RutaExpress.
 
-## Responsabilidad definida por el caso
+## Responsabilidad
 
-- Exponer KPIs y analítica de operaciones.
-- Proveer endpoints de solo lectura.
+Expone consultas de solo lectura. En Entrega 1 obtiene snapshots desde
+`ms-rutaexpress-shipments` por una URL interna y calcula KPIs sin escribir ni
+modificar envíos. El BFF es el único punto que debe exponer estas rutas al
+frontend.
 
-## Endpoints definidos por el caso
+```text
+Angular -> BFF -> report -> shipments
+```
 
-- `GET /api/report/kpis?range=last24h`
-- `GET /api/report/top-services?range=last7d`
+En una etapa posterior, Kafka puede alimentar una proyección propia de
+reportería. La API pública no cambia: sólo se reemplaza el adaptador interno de
+lectura.
 
-## Estado en Entrega 1
+## Endpoints
 
-El repositorio se crea ahora para completar la separación de servicios acordada. La implementación de Kafka, Zookeeper, auditoría y procesamiento de eventos queda pendiente de confirmación y no se incorpora todavía.
+| Ruta | Descripción |
+|---|---|
+| `GET /api/report/kpis?range=last24h` | Totales, estados activos, entregados, cancelados y lead time promedio. |
+| `GET /api/report/top-destinations?range=last7d&limit=5` | Destinos con más envíos. |
+| `GET /actuator/health` | Salud del servicio. |
+
+Los rangos permitidos son `last24h`, `last7d` y `last30d`. `limit` acepta de 1 a
+20. Las métricas consideran la fecha de creación del envío; para envíos en
+estado `ENTREGADO`, `fechaActualizacion` representa la hora de término usada por
+el lead time.
+
+## Ejecutar localmente
+
+Requiere JDK 21 y que `ms-rutaexpress-shipments` esté disponible en el puerto
+5000 o en la URL indicada.
+
+```powershell
+$env:SHIPMENTS_URL = 'http://localhost:5000'
+.\mvnw.cmd spring-boot:run
+curl.exe 'http://localhost:8082/api/report/kpis?range=last24h'
+```
+
+## Pruebas y Docker
+
+```powershell
+.\mvnw.cmd clean verify
+docker build -t rutaexpress-report:local .
+docker run --rm -p 8082:8082 -e SHIPMENTS_URL=http://host.docker.internal:5000 rutaexpress-report:local
+```
+
+Las pruebas cubren cálculo de KPIs, filtrado por rango, lead time, orden de
+destinos y validación de rangos. No se incluyen credenciales ni tokens en este
+repositorio.
