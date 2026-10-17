@@ -1,5 +1,7 @@
 # ms-rutaexpress-report
 
+> Ramas del equipo: `matizk` para trabajo personal, `desarrollo` para integración y `main` para la entrega estable. Ver [CONTRIBUTING.md](CONTRIBUTING.md) y la [guía EV2](https://github.com/matizk/ms-rutaexpress-shipments/blob/desarrollo/CONTINUAR_EV2_EQUIPO.md). Este ajuste no cambia el código funcional de Reportes ni certifica el despliegue cloud.
+
 Microservicio Spring Boot de reportería operacional para RutaExpress.
 
 ## Responsabilidad
