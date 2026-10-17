@@ -1,11 +1,15 @@
-# ms-rutaexpress-report
+# ms-rutaexpress-reportes
+
+> **Estás viendo main: versión estable de EV1.** El avance de EV2 y las instrucciones actuales para descargar las seis carpetas están en [desarrollo](https://github.com/matizk/ms-rutaexpress-reportes/tree/desarrollo) y en la [guía central del equipo](https://github.com/matizk/ms-rutaexpress-envios/blob/desarrollo/CONTINUAR_EV2_EQUIPO.md). Esta actualización de main solo cambia documentos; no publica la implementación EV2 ni acredita despliegue cloud.
+
+Los repositorios y carpetas se renombraron al español el 17-10-2026. Ver [COLABORACION.md](COLABORACION.md) para el flujo `matizk → desarrollo → entrega → main`. Las instrucciones EV1 que siguen son antecedentes de esta versión, no la configuración del sistema EV2 con los nuevos nombres. Para ejecutar la integración actual, seguir exclusivamente la guía de desarrollo.
 
 Microservicio Spring Boot de reportería operacional para RutaExpress.
 
 ## Responsabilidad
 
 Expone consultas de solo lectura. En Entrega 1 obtiene snapshots desde
-`ms-rutaexpress-shipments` por una URL interna y calcula KPIs sin escribir ni
+`ms-rutaexpress-envios` por una URL interna y calcula KPIs sin escribir ni
 modificar envíos. El BFF es el único punto que debe exponer estas rutas al
 frontend.
 
@@ -32,7 +36,7 @@ el lead time.
 
 ## Ejecutar localmente
 
-Requiere JDK 21 y que `ms-rutaexpress-shipments` esté disponible en el puerto
+Requiere JDK 21 y que `ms-rutaexpress-envios` esté disponible en el puerto
 5000 o en la URL indicada.
 
 ```powershell
