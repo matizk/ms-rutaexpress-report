@@ -2,6 +2,8 @@
 
 > Ramas del equipo: `matizk` para trabajo personal, `desarrollo` para integración y `main` para la entrega estable. Ver [COLABORACION.md](COLABORACION.md) y la [guía EV2](https://github.com/matizk/ms-rutaexpress-envios/blob/desarrollo/CONTINUAR_EV2_EQUIPO.md). Este ajuste no cambia el código funcional de Reportes ni certifica el despliegue cloud.
 
+Actualización documental del 21-10-2026 en `matizk`: Daniel informó Reportes activo dentro del AWS existente. El caso integrado `RX-1792623980566` ya completó Azure Duoc, aceptación, ticket y tracking; no implica una nueva prueba de todos los KPI. [Fuentes y pendientes del equipo](https://github.com/matizk/ms-rutaexpress-envios/blob/matizk/CONTINUAR_EV2_EQUIPO.md). El operador Azure no recibe acceso administrativo a Reportes; se mantiene Cognito Admin. Esta corrección queda pendiente de integración y no modifica código ni infraestructura.
+
 Microservicio Spring Boot de reportería operacional para RutaExpress.
 
 ## Responsabilidad
